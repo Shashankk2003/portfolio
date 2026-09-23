@@ -59,19 +59,9 @@ export function Navigation() {
           >
             SK
           </motion.div>
-          <AnimatePresence>
-            {!scrolled && (
-              <motion.span
-                initial={{ opacity: 0, width: 0 }}
-                animate={{ opacity: 1, width: "auto" }}
-                exit={{ opacity: 0, width: 0 }}
-                transition={{ duration: 0.25 }}
-                className="font-bold text-lg tracking-widest uppercase text-foreground hidden sm:block overflow-hidden whitespace-nowrap"
-              >
-                Shashank Kapoor
-              </motion.span>
-            )}
-          </AnimatePresence>
+          <span className="font-bold tracking-widest uppercase text-foreground hidden sm:block whitespace-nowrap text-lg">
+            Shashank Kapoor
+          </span>
         </a>
 
         {/* Desktop Nav */}
