@@ -6,12 +6,12 @@ export function MarqueeStrip() {
   ];
 
   return (
-    <div className="w-full bg-primary py-4 overflow-hidden flex whitespace-nowrap border-y border-white/10">
+    <div className="w-full bg-primary py-4 overflow-hidden flex whitespace-nowrap border-y border-primary">
       <div className="animate-marquee flex items-center shrink-0 min-w-full">
         {items.map((item, idx) => (
           <span 
             key={`a-${idx}`} 
-            className={`mx-4 text-sm font-bold uppercase tracking-widest ${item === '●' ? 'text-white/50 text-[10px]' : 'text-white'}`}
+            className={`mx-4 text-sm font-bold uppercase tracking-widest ${item === '●' ? 'text-primary-foreground/50 text-[10px]' : 'text-primary-foreground'}`}
           >
             {item}
           </span>
@@ -21,7 +21,7 @@ export function MarqueeStrip() {
         {items.map((item, idx) => (
           <span 
             key={`b-${idx}`} 
-            className={`mx-4 text-sm font-bold uppercase tracking-widest ${item === '●' ? 'text-white/50 text-[10px]' : 'text-white'}`}
+            className={`mx-4 text-sm font-bold uppercase tracking-widest ${item === '●' ? 'text-primary-foreground/50 text-[10px]' : 'text-primary-foreground'}`}
           >
             {item}
           </span>

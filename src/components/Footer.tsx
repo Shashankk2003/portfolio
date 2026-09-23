@@ -23,12 +23,12 @@ export function Footer() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <footer className="bg-[#080808] relative z-10 overflow-hidden" ref={ref}>
+    <footer className="bg-background relative z-10 overflow-hidden" ref={ref}>
       {/* Top glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-primary/4 rounded-full blur-[120px] pointer-events-none" />
 
       {/* ── Giant name display ── */}
-      <div className="relative border-b border-white/5 overflow-hidden py-24 md:py-32">
+      <div className="relative border-b border-border overflow-hidden py-24 md:py-32">
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -38,7 +38,7 @@ export function Footer() {
           <p className="text-xs font-bold tracking-[0.3em] uppercase text-primary mb-6">UI/UX Designer · Chandigarh, India</p>
 
           {/* Huge name */}
-          <h2 className="font-black tracking-tighter leading-none text-white select-none"
+          <h2 className="font-black tracking-tighter leading-none text-foreground select-none"
             style={{ fontSize: "clamp(56px, 12vw, 180px)" }}>
             Shashank
           </h2>
@@ -76,17 +76,14 @@ export function Footer() {
               <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-primary-foreground font-black text-sm">
                 SK
               </div>
-              <span className="font-bold uppercase tracking-widest text-white text-sm">Shashank Kapoor</span>
+              <span className="font-bold uppercase tracking-widest text-foreground text-sm">Shashank Kapoor</span>
             </div>
             <p className="text-sm font-normal text-muted-foreground leading-relaxed mb-6">
               UI/UX Designer crafting digital experiences that are beautiful, functional, and human-centered. Available for freelance projects.
             </p>
             <div className="flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
-              </span>
-              <span className="text-xs font-bold text-green-400 uppercase tracking-widest">Open to work</span>
+              
+              
             </div>
           </motion.div>
 
@@ -102,7 +99,7 @@ export function Footer() {
                 <li key={l.label}>
                   <a
                     href={l.href}
-                    className="text-sm font-bold text-muted-foreground hover:text-white transition-colors duration-200 hover:translate-x-1 inline-block"
+                    className="text-sm font-bold text-muted-foreground hover:text-foreground transition-colors duration-200 hover:translate-x-1 inline-block"
                   >
                     {l.label}
                   </a>
@@ -127,9 +124,9 @@ export function Footer() {
                     href={s.href}
                     target={s.href.startsWith("http") ? "_blank" : undefined}
                     rel="noreferrer"
-                    className="group flex items-center gap-3 text-sm font-bold text-muted-foreground hover:text-white transition-colors duration-200"
+                    className="group flex items-center gap-3 text-sm font-bold text-muted-foreground hover:text-foreground transition-colors duration-200"
                   >
-                    <span className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-200">
+                    <span className="w-8 h-8 rounded-lg bg-foreground/5 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-200">
                       <Icon className="h-3.5 w-3.5" />
                     </span>
                     {s.label}
@@ -143,14 +140,14 @@ export function Footer() {
               href="#contact"
               className="inline-flex items-center gap-2 px-5 h-11 rounded-full bg-primary text-primary-foreground text-xs font-bold uppercase tracking-widest hover:bg-primary/90 hover:-translate-y-0.5 transition-all duration-200"
             >
-              Hire Me
+              Get in Touch
             </a>
           </motion.div>
         </div>
       </div>
 
       {/* ── Bottom bar ── */}
-      <div className="border-t border-white/5">
+      <div className="border-t border-border">
         <div className="container mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs font-normal text-muted-foreground">
             © {new Date().getFullYear()} Shashank Kapoor. All rights reserved.
@@ -160,7 +157,7 @@ export function Footer() {
           </p>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-muted-foreground hover:text-white hover:border-white/30 hover:-translate-y-0.5 transition-all duration-200"
+            className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/30 hover:-translate-y-0.5 transition-all duration-200"
             aria-label="Back to top"
           >
             <ArrowUp className="h-4 w-4" />

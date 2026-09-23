@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MapPin } from "lucide-react";
-import profilePhoto from "@assets/Photo_1781717654557.jpg";
+
+const profilePhoto = "/images/profile photo.jpeg";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[100dvh] flex flex-col justify-center overflow-hidden bg-[#0A0A0A]">
+    <section className="relative min-h-[100dvh] flex flex-col justify-center overflow-hidden bg-background">
 
       {/* ── Full-height photo panel (right half, absolutely positioned) ── */}
       <div className="absolute right-0 top-0 bottom-0 w-[45%] hidden lg:block">
@@ -15,17 +16,11 @@ export function Hero() {
           alt="Shashank Kapoor"
           data-testid="img-profile"
           className="w-full h-full object-cover object-top grayscale"
-          style={{ objectPosition: "50% 8%" }}
+          style={{ objectPosition: "50% 12%" }}
         />
-        {/* Left-to-right gradient: dark background bleeds into photo */}
-        <div className="absolute inset-0"
-          style={{ background: "linear-gradient(to right, #0A0A0A 0%, #0A0A0A 10%, rgba(10,10,10,0.7) 40%, rgba(10,10,10,0.1) 80%, transparent 100%)" }} />
-        {/* Bottom vignette */}
-        <div className="absolute inset-0"
-          style={{ background: "linear-gradient(to top, #0A0A0A 0%, transparent 30%)" }} />
-        {/* Top vignette */}
-        <div className="absolute inset-0"
-          style={{ background: "linear-gradient(to bottom, #0A0A0A 0%, transparent 20%)" }} />
+        <div className="absolute inset-0 hero-photo-fade-x" />
+        <div className="absolute inset-0 hero-photo-fade-bottom" />
+        <div className="absolute inset-0 hero-photo-fade-top" />
         {/* Subtle blue tint */}
         <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
       </div>
@@ -41,7 +36,7 @@ export function Hero() {
             transition={{ duration: 0.7 }}
             className="mb-10"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 border border-border text-xs font-semibold uppercase tracking-widest text-muted-foreground">
               <MapPin className="h-3.5 w-3.5 text-primary" />
               Chandigarh, India
             </div>
@@ -54,10 +49,10 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col gap-1 mb-8 leading-none"
           >
-            <span className="text-5xl md:text-7xl lg:text-[clamp(64px,7vw,110px)] font-normal italic text-white/90">
+            <span className="text-5xl md:text-7xl lg:text-[clamp(64px,7vw,110px)] font-normal italic text-foreground/90">
               Crafting
             </span>
-            <span className="text-6xl md:text-8xl lg:text-[clamp(72px,9vw,130px)] font-black text-white tracking-tighter">
+            <span className="text-6xl md:text-8xl lg:text-[clamp(72px,9vw,130px)] font-black text-foreground tracking-tighter">
               Digital
             </span>
             <span
@@ -97,7 +92,7 @@ export function Hero() {
               <Button
                 size="lg"
                 variant="outline"
-                className="rounded-full px-10 h-14 text-sm uppercase tracking-widest font-bold border-white/20 hover:bg-white/5 hover:-translate-y-0.5 transition-all"
+                className="rounded-full px-10 h-14 text-sm uppercase tracking-widest font-bold border-border hover:bg-foreground/5 hover:-translate-y-0.5 transition-all"
               >
                 Download Resume
               </Button>
@@ -112,13 +107,11 @@ export function Hero() {
             className="flex items-center gap-3 flex-wrap"
           >
             {[
-              { value: "30+", label: "Projects" },
-              { value: "3 Yrs", label: "Experience" },
-              { value: "5★", label: "Rating" },
+             
             ].map((s) => (
               <div
                 key={s.label}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-white/8 backdrop-blur-sm"
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/[0.04] border border-border backdrop-blur-sm"
               >
                 <span className="text-sm font-black text-primary">{s.value}</span>
                 <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{s.label}</span>
@@ -134,7 +127,7 @@ export function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.9, duration: 0.7, ease: "easeOut" }}
-        className="absolute bottom-24 right-[6%] z-20 hidden lg:flex items-center gap-3 px-5 py-4 rounded-2xl bg-[#111]/90 backdrop-blur-xl border border-white/10 shadow-2xl"
+        className="absolute bottom-24 right-[6%] z-20 hidden lg:flex items-center gap-3 px-5 py-4 rounded-2xl bg-card/90 backdrop-blur-xl border border-border shadow-2xl"
       >
         <motion.div
           animate={{ y: [0, -6, 0] }}
@@ -146,7 +139,7 @@ export function Hero() {
           </div>
           <div>
             <div className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold mb-0.5">Role</div>
-            <div className="text-sm font-bold text-white">UI/UX Designer</div>
+            <div className="text-sm font-bold text-foreground">UI/UX Designer</div>
           </div>
         </motion.div>
       </motion.div>
@@ -154,21 +147,21 @@ export function Hero() {
       {/* ── Mobile photo (stacked layout) ── */}
       <div className="lg:hidden w-full mt-8 px-6 pb-8">
         <div className="relative w-full max-w-xs mx-auto" style={{ aspectRatio: "3/4" }}>
-          <div className="w-full h-full rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl">
+          <div className="w-full h-full rounded-[2rem] overflow-hidden border border-border shadow-2xl">
             <img
               src={profilePhoto}
               alt="Shashank Kapoor"
               className="w-full h-full object-cover grayscale"
-              style={{ objectPosition: "50% 8%" }}
+              style={{ objectPosition: "50% 12%" }}
             />
             <div className="absolute inset-0 bg-primary/15 mix-blend-overlay" />
-            <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #0A0A0A 0%, transparent 40%)" }} />
+            <div className="absolute inset-0 hero-photo-fade-mobile" />
           </div>
         </div>
       </div>
 
       {/* ── Watermark ── */}
-      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 text-[28vw] font-black text-white/[0.015] select-none pointer-events-none -z-10 leading-none tracking-tighter">
+      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 text-[28vw] font-black text-foreground/[0.04] select-none pointer-events-none -z-10 leading-none tracking-tighter">
         SK
       </div>
 
@@ -181,7 +174,7 @@ export function Hero() {
         onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
       >
         <span className="text-[9px] uppercase tracking-[0.3em] font-bold">Scroll</span>
-        <div className="relative w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-1.5">
+        <div className="relative w-6 h-10 rounded-full border-2 border-foreground/20 flex justify-center pt-1.5">
           <motion.div
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}

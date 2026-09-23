@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react"
 
 type Theme = "dark" | "light" | "system"
+type ResolvedTheme = "dark" | "light"
 
 type ThemeProviderProps = {
   children: React.ReactNode
@@ -10,15 +11,30 @@ type ThemeProviderProps = {
 
 type ThemeProviderState = {
   theme: Theme
+  resolvedTheme: ResolvedTheme
   setTheme: (theme: Theme) => void
 }
 
 const initialState: ThemeProviderState = {
-  theme: "dark", // default to dark as per requirements
+  theme: "dark",
+  resolvedTheme: "dark",
   setTheme: () => null,
 }
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
+
+function getSystemTheme(): ResolvedTheme {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+}
+
+function applyThemeClass(theme: Theme): ResolvedTheme {
+  const resolved = theme === "system" ? getSystemTheme() : theme
+  const root = window.document.documentElement
+  root.classList.remove("light", "dark")
+  root.classList.add(resolved)
+  root.style.colorScheme = resolved
+  return resolved
+}
 
 export function ThemeProvider({
   children,
@@ -29,30 +45,27 @@ export function ThemeProvider({
   const [theme, setTheme] = useState<Theme>(
     () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
   )
+  const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>(() =>
+    theme === "system" ? getSystemTheme() : theme
+  )
 
   useEffect(() => {
-    const root = window.document.documentElement
+    setResolvedTheme(applyThemeClass(theme))
 
-    root.classList.remove("light", "dark")
+    if (theme !== "system") return
 
-    if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light"
-
-      root.classList.add(systemTheme)
-      return
-    }
-
-    root.classList.add(theme)
+    const media = window.matchMedia("(prefers-color-scheme: dark)")
+    const onChange = () => setResolvedTheme(applyThemeClass("system"))
+    media.addEventListener("change", onChange)
+    return () => media.removeEventListener("change", onChange)
   }, [theme])
 
   const value = {
     theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme)
-      setTheme(theme)
+    resolvedTheme,
+    setTheme: (next: Theme) => {
+      localStorage.setItem(storageKey, next)
+      setTheme(next)
     },
   }
 

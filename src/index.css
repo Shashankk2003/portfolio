@@ -213,8 +213,15 @@
   * {
     @apply border-border;
   }
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   body::before {
     content: '';
@@ -255,6 +262,26 @@
 }
 .animate-marquee-slow {
   animation: marquee 35s linear infinite;
+}
+
+.hero-photo-fade-x {
+  background: linear-gradient(
+    to right,
+    hsl(var(--background)) 0%,
+    hsl(var(--background)) 10%,
+    hsl(var(--background) / 0.7) 40%,
+    hsl(var(--background) / 0.1) 80%,
+    transparent 100%
+  );
+}
+.hero-photo-fade-bottom {
+  background: linear-gradient(to top, hsl(var(--background)) 0%, transparent 30%);
+}
+.hero-photo-fade-top {
+  background: linear-gradient(to bottom, hsl(var(--background)) 0%, transparent 20%);
+}
+.hero-photo-fade-mobile {
+  background: linear-gradient(to top, hsl(var(--background)) 0%, transparent 40%);
 }
 
 /* Pulse dot */

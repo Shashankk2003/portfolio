@@ -56,7 +56,7 @@ function CircleProgress({ value, max, color, size = 80 }: { value: number; max: 
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="rgba(255,255,255,0.05)"
+          stroke="hsl(var(--foreground) / 0.1)"
           strokeWidth={4}
         />
         {/* Progress */}
@@ -73,8 +73,8 @@ function CircleProgress({ value, max, color, size = 80 }: { value: number; max: 
         />
       </svg>
       <div className="relative z-10 flex flex-col items-center">
-        <span className="text-xl font-black text-white leading-none">{value}</span>
-        <span className="text-[8px] uppercase tracking-wider text-white/40 font-bold">GPA</span>
+        <span className="text-xl font-black text-foreground leading-none">{value}</span>
+        <span className="text-[8px] uppercase tracking-wider text-muted-foreground font-bold">GPA</span>
       </div>
     </div>
   );
@@ -112,8 +112,8 @@ function EducationCard({ item, index }: { item: (typeof educationData)[0]; index
       transition={{ duration: 0.8, delay: index * 0.2, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative group rounded-[2rem] overflow-hidden cursor-default"
-      style={{ background: "#0f0f0f", border: `1px solid ${hovered ? item.accentColor + "30" : "rgba(255,255,255,0.05)"}`, transition: "border-color 0.4s ease" }}
+      className="relative group rounded-[2rem] overflow-hidden cursor-default bg-card"
+      style={{ border: `1px solid ${hovered ? item.accentColor + "30" : "hsl(var(--border))"}`, transition: "border-color 0.4s ease" }}
     >
       {/* Top accent bar — animated width */}
       <motion.div
@@ -162,7 +162,7 @@ function EducationCard({ item, index }: { item: (typeof educationData)[0]; index
                   {item.status}
                 </span>
               </div>
-              <h3 className="text-2xl md:text-3xl font-black text-white leading-tight tracking-tight">
+              <h3 className="text-2xl md:text-3xl font-black text-foreground leading-tight tracking-tight">
                 {item.degree}
               </h3>
             </div>
@@ -185,18 +185,18 @@ function EducationCard({ item, index }: { item: (typeof educationData)[0]; index
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="flex flex-col gap-1">
             <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Institution</span>
-            <span className="text-sm font-bold text-white">{item.institution}</span>
+            <span className="text-sm font-bold text-foreground">{item.institution}</span>
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Period</span>
-            <span className="text-sm font-bold text-white flex items-center gap-1.5">
+            <span className="text-sm font-bold text-foreground flex items-center gap-1.5">
               <Calendar className="h-3.5 w-3.5" style={{ color: item.accentColor }} />
               {item.period}
             </span>
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Location</span>
-            <span className="text-sm font-bold text-white flex items-center gap-1.5">
+            <span className="text-sm font-bold text-foreground flex items-center gap-1.5">
               <MapPin className="h-3.5 w-3.5" style={{ color: item.accentColor }} />
               {item.location}
             </span>
@@ -212,7 +212,7 @@ export function Education() {
   const headingInView = useInView(headingRef, { once: true, margin: "-80px" });
 
   return (
-    <section id="education" className="py-[120px] relative overflow-hidden bg-[#0A0A0A]">
+    <section id="education" className="py-[120px] relative overflow-hidden bg-background">
       {/* Subtle dot grid */}
       <div className="absolute inset-0 opacity-[0.025] pointer-events-none"
         style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "32px 32px" }}
@@ -228,7 +228,7 @@ export function Education() {
           className="mb-20"
         >
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-4">Education</p>
-          <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-white">
+          <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-foreground">
             Academic{" "}
             <span style={{ WebkitTextStroke: "2px hsl(var(--primary))", color: "transparent" }}>
               Background

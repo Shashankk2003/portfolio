@@ -55,7 +55,7 @@ function StepRow({ step, index }: { step: (typeof steps)[0]; index: number }) {
       initial={{ opacity: 0, y: 32 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative py-10 md:py-12 border-b border-white/5 last:border-0 flex flex-col md:flex-row md:items-center gap-6 md:gap-16 cursor-default"
+      className="group relative py-10 md:py-12 border-b border-border last:border-0 flex flex-col md:flex-row md:items-center gap-6 md:gap-16 cursor-default"
     >
       {/* Hover bg sweep */}
       <motion.div
@@ -77,7 +77,7 @@ function StepRow({ step, index }: { step: (typeof steps)[0]; index: number }) {
       {/* Content */}
       <div className="flex-1 min-w-0">
         <h3
-          className="text-2xl md:text-3xl font-black tracking-tight text-white mb-3 transition-colors duration-300"
+          className="text-2xl md:text-3xl font-black tracking-tight text-foreground mb-3 transition-colors duration-300"
         >
           {step.title}
         </h3>
@@ -91,7 +91,7 @@ function StepRow({ step, index }: { step: (typeof steps)[0]; index: number }) {
         {step.tools.map((tool) => (
           <span
             key={tool}
-            className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full border border-white/8 bg-white/4 text-muted-foreground group-hover:border-white/15 transition-colors duration-300"
+            className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full border border-border bg-foreground/5 text-muted-foreground group-hover:border-foreground/20 transition-colors duration-300"
           >
             {tool}
           </span>
@@ -106,7 +106,7 @@ export function AIInDesign() {
   const headingInView = useInView(headingRef, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-[120px] bg-[#0f0f0f] relative z-10 overflow-hidden">
+    <section className="py-[120px] bg-card relative z-10 overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10 translate-x-1/2" />
 
@@ -124,7 +124,7 @@ export function AIInDesign() {
             AI-Powered Design
           </div>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-4">
-            <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-white">
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-foreground">
               Design at the{" "}
               <span style={{ WebkitTextStroke: "2px hsl(var(--primary))", color: "transparent" }}>
                 Speed of AI
@@ -141,7 +141,7 @@ export function AIInDesign() {
           initial={{ scaleX: 0 }}
           animate={headingInView ? { scaleX: 1 } : {}}
           transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-          className="h-px bg-white/8 origin-left mb-2"
+          className="h-px bg-border origin-left mb-2"
         />
 
         {/* Steps — editorial list rows */}
@@ -157,9 +157,9 @@ export function AIInDesign() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-16 pt-12 border-t border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8"
+          className="mt-16 pt-12 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8"
         >
-          <p className="text-2xl md:text-3xl font-black text-white tracking-tight max-w-sm">
+          <p className="text-2xl md:text-3xl font-black text-foreground tracking-tight max-w-sm">
             3× faster delivery.{" "}
             <span className="text-muted-foreground font-light">Zero compromise on quality.</span>
           </p>

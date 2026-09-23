@@ -1,12 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import { useTheme } from "./theme-provider";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu, X, Palette } from "lucide-react";
+import { Menu, X, Palette } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAccent, ACCENTS } from "@/contexts/AccentContext";
 
 export function Navigation() {
-  const { theme, setTheme } = useTheme();
   const { accent, setAccent } = useAccent();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -46,7 +44,7 @@ export function Navigation() {
       }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-        scrolled ? "bg-[#0a0a0a]/95 backdrop-blur-2xl border-b border-white/5 shadow-2xl" : "bg-transparent"
+        scrolled ? "bg-background/95 backdrop-blur-2xl border-b border-border shadow-2xl" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
@@ -86,13 +84,13 @@ export function Navigation() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.2 }}
-                className="flex items-center gap-1 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full px-2 py-1.5"
+                className="flex items-center gap-1 bg-foreground/5 backdrop-blur-xl border border-border rounded-full px-2 py-1.5"
               >
                 {links.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
-                    className="text-[10px] uppercase tracking-widest font-semibold text-muted-foreground hover:text-foreground hover:bg-white/8 px-3 py-1.5 rounded-full transition-all"
+                    className="text-[10px] uppercase tracking-widest font-semibold text-muted-foreground hover:text-foreground hover:bg-foreground/10 px-3 py-1.5 rounded-full transition-all"
                     data-testid={`link-${link.name.toLowerCase()}`}
                   >
                     {link.name}
@@ -135,13 +133,13 @@ export function Navigation() {
               size="icon"
               onClick={() => setPaletteOpen((o) => !o)}
               data-testid="button-palette"
-              className="rounded-full hover:bg-white/5 w-8 h-8 relative"
+              className="rounded-full hover:bg-foreground/5 w-8 h-8 relative"
               title="Change accent color"
             >
               <Palette className="h-4 w-4" />
               {/* Active color dot */}
               <span
-                className="absolute bottom-0.5 right-0.5 w-2 h-2 rounded-full border border-[#0a0a0a]"
+                className="absolute bottom-0.5 right-0.5 w-2 h-2 rounded-full border border-background"
                 style={{ backgroundColor: accent.hex }}
               />
             </Button>
@@ -153,7 +151,7 @@ export function Navigation() {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9, y: -4 }}
                   transition={{ duration: 0.15, ease: "easeOut" }}
-                  className="absolute top-full right-0 mt-2 bg-[#111] border border-white/10 rounded-2xl p-3 shadow-2xl min-w-[160px]"
+                  className="absolute top-full right-0 mt-2 bg-popover border border-border rounded-2xl p-3 shadow-2xl min-w-[160px]"
                 >
                   <p className="text-[9px] uppercase tracking-[0.2em] font-bold text-muted-foreground mb-2.5 px-1">
                     Accent Color
@@ -163,16 +161,16 @@ export function Navigation() {
                       <button
                         key={a.name}
                         onClick={() => { setAccent(a); setPaletteOpen(false); }}
-                        className="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-white/5 transition-colors w-full text-left group"
+                        className="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-foreground/5 transition-colors w-full text-left group"
                       >
                         <span
-                          className="w-5 h-5 rounded-full flex-shrink-0 ring-2 ring-offset-2 ring-offset-[#111] transition-all duration-200"
+                          className="w-5 h-5 rounded-full flex-shrink-0 ring-2 ring-offset-2 ring-offset-popover transition-all duration-200"
                           style={{
                             backgroundColor: a.hex,
                             boxShadow: accent.name === a.name ? `0 0 0 2px ${a.hex}` : "none",
                           }}
                         />
-                        <span className={`text-xs font-bold transition-colors ${accent.name === a.name ? "text-white" : "text-muted-foreground group-hover:text-white"}`}>
+                        <span className={`text-xs font-bold transition-colors ${accent.name === a.name ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"}`}>
                           {a.name}
                         </span>
                         {accent.name === a.name && (
@@ -187,21 +185,11 @@ export function Navigation() {
           </div>
 
           <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            data-testid="button-theme-toggle"
-            className="rounded-full hover:bg-white/5 w-8 h-8"
-          >
-            {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </Button>
-
-          <Button
             className="rounded-full px-5 h-9 text-xs uppercase tracking-widest font-bold bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-0.5 transition-transform"
             data-testid="button-hire-me"
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
           >
-            Hire Me
+            Get in Touch
           </Button>
         </div>
 
@@ -213,11 +201,11 @@ export function Navigation() {
               variant="ghost"
               size="icon"
               onClick={() => setPaletteOpen((o) => !o)}
-              className="rounded-full hover:bg-white/5 w-8 h-8 relative"
+              className="rounded-full hover:bg-foreground/5 w-8 h-8 relative"
             >
               <Palette className="h-4 w-4" />
               <span
-                className="absolute bottom-0.5 right-0.5 w-2 h-2 rounded-full border border-[#0a0a0a]"
+                className="absolute bottom-0.5 right-0.5 w-2 h-2 rounded-full border border-background"
                 style={{ backgroundColor: accent.hex }}
               />
             </Button>
@@ -228,7 +216,7 @@ export function Navigation() {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9, y: -4 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute top-full right-0 mt-2 bg-[#111] border border-white/10 rounded-2xl p-3 shadow-2xl min-w-[160px] z-50"
+                  className="absolute top-full right-0 mt-2 bg-popover border border-border rounded-2xl p-3 shadow-2xl min-w-[160px] z-50"
                 >
                   <p className="text-[9px] uppercase tracking-[0.2em] font-bold text-muted-foreground mb-2.5 px-1">Accent Color</p>
                   <div className="flex flex-col gap-1">
@@ -236,10 +224,10 @@ export function Navigation() {
                       <button
                         key={a.name}
                         onClick={() => { setAccent(a); setPaletteOpen(false); }}
-                        className="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-white/5 transition-colors w-full text-left"
+                        className="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-foreground/5 transition-colors w-full text-left"
                       >
                         <span className="w-5 h-5 rounded-full flex-shrink-0" style={{ backgroundColor: a.hex, boxShadow: accent.name === a.name ? `0 0 0 2px ${a.hex}` : "none" }} />
-                        <span className={`text-xs font-bold ${accent.name === a.name ? "text-white" : "text-muted-foreground"}`}>{a.name}</span>
+                        <span className={`text-xs font-bold ${accent.name === a.name ? "text-foreground" : "text-muted-foreground"}`}>{a.name}</span>
                         {accent.name === a.name && <span className="ml-auto text-[10px] font-black" style={{ color: a.hex }}>✓</span>}
                       </button>
                     ))}
@@ -252,16 +240,8 @@ export function Navigation() {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="rounded-full hover:bg-white/5 w-8 h-8"
-          >
-            {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="rounded-full hover:bg-white/5 w-8 h-8"
+            className="rounded-full hover:bg-foreground/5 w-8 h-8"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
@@ -275,7 +255,7 @@ export function Navigation() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 bg-[#0a0a0a]/98 backdrop-blur-2xl border-b border-white/5 p-6 shadow-2xl md:hidden"
+            className="absolute top-full left-0 right-0 bg-background/98 backdrop-blur-2xl border-b border-border p-6 shadow-2xl md:hidden"
           >
             <ul className="flex flex-col gap-5">
               {links.map((link) => (
@@ -289,7 +269,7 @@ export function Navigation() {
                   </a>
                 </li>
               ))}
-              <li className="pt-4 border-t border-white/10">
+              <li className="pt-4 border-t border-border">
                 <Button
                   className="w-full h-12 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 text-sm uppercase tracking-widest font-bold"
                   onClick={() => {
@@ -297,7 +277,7 @@ export function Navigation() {
                     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
-                  Hire Me
+                  Get in Touch
                 </Button>
               </li>
             </ul>

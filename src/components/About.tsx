@@ -44,7 +44,7 @@ export function About() {
   const inView = useInView(sectionRef, { once: true, margin: "-80px" });
 
   return (
-    <section id="about" className="py-[120px] bg-[#0f0f0f] relative z-10 overflow-hidden">
+    <section id="about" className="py-[120px] bg-card relative z-10 overflow-hidden">
       {/* Subtle grid */}
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none"
         style={{ backgroundImage: "linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
@@ -59,7 +59,7 @@ export function About() {
           <div className="inline-block text-xs font-bold tracking-[0.2em] text-primary uppercase mb-4">
             About Me
           </div>
-          <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-white">
+          <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-foreground">
             Designing Experiences{" "}
             <span style={{ WebkitTextStroke: "2px hsl(var(--primary))", color: "transparent" }}>
               That Matter
@@ -74,13 +74,13 @@ export function About() {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-7 bg-[#151515] rounded-[2rem] p-8 md:p-12 border border-white/5 flex flex-col justify-between gap-10 relative overflow-hidden group hover:border-white/10 transition-colors duration-500"
+            className="lg:col-span-7 bg-background rounded-[2rem] p-8 md:p-12 border border-border flex flex-col justify-between gap-10 relative overflow-hidden group hover:border-foreground/15 transition-colors duration-500"
           >
             <div className="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px] -z-10 pointer-events-none group-hover:opacity-80 transition-opacity duration-700" />
 
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
-              I'm a <span className="text-white font-semibold">UI/UX Designer</span> from Chandigarh with a focus on creating intuitive, user-centered experiences. I transform complex ideas into{" "}
-              <span className="text-white font-semibold">simple, beautiful digital products</span> that users love and businesses trust.
+              I'm a <span className="text-foreground font-semibold">UI/UX Designer</span> from Chandigarh with a focus on creating intuitive, user-centered experiences. I transform complex ideas into{" "}
+              <span className="text-foreground font-semibold">simple, beautiful digital products</span> that users love and businesses trust.
             </p>
 
             <div>
@@ -92,7 +92,7 @@ export function About() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={inView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.4, delay: 0.3 + i * 0.05 }}
-                    className="px-4 py-2 rounded-full border border-white/8 bg-black/40 text-xs font-bold uppercase tracking-wider text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 cursor-default"
+                    className="px-4 py-2 rounded-full border border-border bg-foreground/5 text-xs font-bold uppercase tracking-wider text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 cursor-default"
                   >
                     {tool}
                   </motion.div>
@@ -106,12 +106,12 @@ export function About() {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-5 bg-[#151515] rounded-[2rem] p-8 md:p-10 border border-white/5 flex flex-col justify-between relative overflow-hidden hover:border-white/10 transition-colors duration-500"
+            className="lg:col-span-5 bg-background rounded-[2rem] p-8 md:p-10 border border-border flex flex-col justify-between relative overflow-hidden hover:border-foreground/15 transition-colors duration-500"
           >
             {stats.map((stat, i) => (
               <div key={stat.label}>
                 <div className="py-6">
-                  <div className="text-5xl md:text-6xl font-black text-white leading-none mb-2">
+                  <div className="text-5xl md:text-6xl font-black text-foreground leading-none mb-2">
                     <CountUp to={stat.value} suffix={stat.suffix} delay={0.2 + i * 0.15} />
                   </div>
                   <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
@@ -123,7 +123,7 @@ export function About() {
                     initial={{ scaleX: 0 }}
                     animate={inView ? { scaleX: 1 } : {}}
                     transition={{ duration: 1, delay: 0.4 + i * 0.1, ease: "easeOut" }}
-                    className="h-px bg-white/5 origin-left"
+                    className="h-px bg-border origin-left"
                   />
                 )}
               </div>
@@ -135,13 +135,13 @@ export function About() {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-12 bg-[#151515] rounded-[2rem] p-8 md:p-10 border border-white/5 relative overflow-hidden hover:border-white/10 transition-colors duration-500"
+            className="lg:col-span-12 bg-background rounded-[2rem] p-8 md:p-10 border border-border relative overflow-hidden hover:border-foreground/15 transition-colors duration-500"
           >
             <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] -z-10 pointer-events-none" />
 
             <div className="mb-8">
               <div className="text-[10px] uppercase tracking-[0.25em] font-bold text-primary mb-2">Who I Design For</div>
-              <h3 className="text-2xl md:text-3xl font-black text-white tracking-tight">
+              <h3 className="text-2xl md:text-3xl font-black text-foreground tracking-tight">
                 From early-stage startups to global enterprises
               </h3>
             </div>
@@ -153,13 +153,13 @@ export function About() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.4 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className="group/card flex flex-col gap-3 p-5 rounded-2xl border border-white/5 bg-black/30 hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 cursor-default"
+                  className="group/card flex flex-col gap-3 p-5 rounded-2xl border border-border bg-foreground/5 hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 cursor-default"
                 >
                   <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover/card:bg-primary/20 transition-colors duration-300">
                     <Icon className="h-4 w-4 text-primary" />
                   </div>
                   <div>
-                    <p className="font-bold text-white text-sm mb-1">{label}</p>
+                    <p className="font-bold text-foreground text-sm mb-1">{label}</p>
                     <p className="text-xs text-muted-foreground leading-snug">{desc}</p>
                   </div>
                 </motion.div>
@@ -172,17 +172,17 @@ export function About() {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-12 bg-[#151515] rounded-[2rem] p-10 md:p-16 border border-white/5 flex items-center justify-center relative overflow-hidden group hover:border-white/10 transition-colors duration-500"
+            className="lg:col-span-12 bg-background rounded-[2rem] p-10 md:p-16 border border-border flex items-center justify-center relative overflow-hidden group hover:border-foreground/15 transition-colors duration-500"
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[200px] bg-primary/8 rounded-full blur-[100px] -z-10 pointer-events-none group-hover:opacity-150 transition-opacity duration-700" />
             <motion.h3
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ duration: 1.2, delay: 0.6 }}
-              className="text-2xl md:text-4xl lg:text-5xl font-light italic text-center max-w-4xl text-white/90 leading-tight"
+              className="text-2xl md:text-4xl lg:text-5xl font-light italic text-center max-w-4xl text-foreground/90 leading-tight"
             >
               "I believe great design is invisible —{" "}
-              <span className="font-black text-white not-italic">it just works.</span>"
+              <span className="font-black text-foreground not-italic">it just works.</span>"
             </motion.h3>
           </motion.div>
 

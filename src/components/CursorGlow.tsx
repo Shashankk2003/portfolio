@@ -80,7 +80,7 @@ export function CursorGlow() {
         animate={{
           opacity: visible ? 1 : 0,
           scale: clicking ? 0.5 : hovering ? 1.6 : 1,
-          backgroundColor: hovering ? "hsl(var(--primary))" : "#ffffff",
+          backgroundColor: hovering ? "hsl(var(--primary))" : "hsl(var(--foreground))",
         }}
         transition={{ duration: 0.15, ease: "easeOut" }}
       >

@@ -64,7 +64,7 @@ function TiltCard({ exp, index }: { exp: (typeof experiences)[0]; index: number 
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="group relative rounded-[2rem] border border-white/5 bg-[#0f0f0f] p-8 md:p-10 overflow-hidden cursor-default hover:border-white/10 transition-colors duration-500"
+        className="group relative rounded-[2rem] border border-border bg-card p-8 md:p-10 overflow-hidden cursor-default hover:border-foreground/15 transition-colors duration-500"
       >
         {/* Shimmer sweep on hover */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
@@ -97,7 +97,7 @@ function TiltCard({ exp, index }: { exp: (typeof experiences)[0]; index: number 
                 </span>
               </div>
               <h3
-                className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-white group-hover:text-opacity-90 transition-colors duration-300"
+                className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-foreground group-hover:text-opacity-90 transition-colors duration-300"
                 style={{ textShadow: `0 0 40px ${exp.color}00` }}
               >
                 <motion.span
@@ -112,7 +112,7 @@ function TiltCard({ exp, index }: { exp: (typeof experiences)[0]; index: number 
               </div>
             </div>
 
-            <span className="text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full bg-white/5 border border-white/8 text-muted-foreground flex-shrink-0">
+            <span className="text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full bg-foreground/5 border border-border text-muted-foreground flex-shrink-0">
               {exp.date}
             </span>
           </div>
@@ -122,7 +122,7 @@ function TiltCard({ exp, index }: { exp: (typeof experiences)[0]; index: number 
             initial={{ scaleX: 0 }}
             animate={inView ? { scaleX: 1 } : {}}
             transition={{ duration: 0.8, delay: index * 0.15 + 0.3, ease: "easeOut" }}
-            className="h-px bg-white/5 origin-left mb-6"
+            className="h-px bg-border origin-left mb-6"
           />
 
           {/* Description */}
@@ -138,7 +138,7 @@ function TiltCard({ exp, index }: { exp: (typeof experiences)[0]; index: number 
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.4, delay: index * 0.15 + 0.4 + ti * 0.07 }}
-                className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full border border-white/8 bg-white/3 text-muted-foreground"
+                className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full border border-border bg-foreground/5 text-muted-foreground"
               >
                 {tag}
               </motion.span>
@@ -155,7 +155,7 @@ export function Experience() {
   const inView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="experience" className="py-[120px] bg-[#0A0A0A] relative z-10 overflow-hidden">
+    <section id="experience" className="py-[120px] bg-background relative z-10 overflow-hidden">
       {/* Background grid */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none"
         style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)", backgroundSize: "80px 80px" }}
@@ -172,7 +172,7 @@ export function Experience() {
           <div className="inline-block text-xs font-bold tracking-[0.2em] text-primary uppercase mb-4">
             Experience
           </div>
-          <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-white">
+          <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-foreground">
             Where I've{" "}
             <span style={{ WebkitTextStroke: "2px hsl(var(--primary))", color: "transparent" }}>
               Worked
